@@ -17,5 +17,5 @@ function Letter(letter) {
   }
 }
 
-// export function "Letter"
+// export constructor "Letter"
 module.exports = Letter;

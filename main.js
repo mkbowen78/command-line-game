@@ -1,11 +1,11 @@
 // game logic goes in this file
 
 var checkLetters = require("./check-letters.js");
-var gameplay = require("./gameplay.js");
-var wordList = require("./word-list.js");
+var gameplay = require("./game.js");
+var wordList = require("./word.js");
 var inquirer = require("inquirer");
 
-// start game and get for user input
+// start game and get ready for user input
 // decide if letter picked is correct + win or lose game functions
 function userGuess() {
   console.log(newWord.print());
@@ -13,15 +13,17 @@ function userGuess() {
     name: "letter",
     type: "text",
     message: "Select any ONE letter, please:",
+    // make sure only one letter is picked and that only letters are used
     validate: function(string) {
-      var regEx = new RegExp("^[a-zA-Z\s]{1,1}$");
+      var regEx = new RegExp("^[a-zA-Z]{1,1}$");
       if (regEx.test(string)) {
         return true;
       } else {
-        return false;
+        return false,
         console.log("Caught ya! You can only pick ONE letter, cheater!");
       }
     }
+// gameplay with mistake messages and prompts
   }]).then(function(user) {
     console.log("---------------------------------------------");
     var letter = user.letter;
@@ -44,7 +46,7 @@ function userGuess() {
   });
 }
 
-// playAgain function
+// playAgain function and messaging // I messed something up here big time I think...
 function playAgain() {
   inquirer.prompt([{
     type: "input",
